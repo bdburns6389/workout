@@ -1,0 +1,35 @@
+Legs =
+    Squats
+    Deadlift
+    Romanian Deadlift
+    Hack Squat
+    Front Squat
+    Clean Pull
+
+Back=
+    Dips
+    Wide-Grip Pullups
+    Cable Rows
+    Cable Pulldowns
+    Bent-Over Barbell Row
+    Bent-Over Dumbbell Row
+
+Chest=
+    Dips
+    Dumbbell Bench Press
+    Dumbbell Incline Bench Press
+    Barbell Bench Press
+    Barbell Incline Bench Press
+
+Arms=
+    Chinups
+    Pullups
+    EZ-Bar Curl
+    Hammer Dumbbell Curls
+    Tricep Cable Pushdown
+    Tricep Cable Extension
+    Dips
+
+Abdominals=
+
+
