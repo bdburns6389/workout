@@ -31,5 +31,23 @@ Arms=
     Dips
 
 Abdominals=
+    Ab Roller
+    Roman Chair
+    Russian Twists
+    Cable Twists
+    Toes-to-Bar
+    Windshield Wipers
 
+Miscellaneous=
+    Calf Raises (Squat Machine)
+    Calf Raises (Sit Down Machine)
+    Farmer Carry/Stationary
+    Zottman Curls
+    Wrist Curls
+
+Cardio=
+    Jogging
+    Jump Rope
+    Stair Climber
+    Punching Bag Routine
 
