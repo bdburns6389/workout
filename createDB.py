@@ -48,7 +48,7 @@ def delete_database():
 
 #create_table()
 #data_entry()
-delete_database()
+#delete_database()
 #dynamic_data_entry()
 
 
