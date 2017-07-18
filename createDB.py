@@ -39,7 +39,7 @@ def dynamic_data_entry():
 def update_database():
     pass
 def random_select():
-    pass
+    c.execute('SELECT legs FROM exercises ORDER BY Random() LIMIT 100 ')
 # c.execute('SELECT * FROM exercises_2) then data=(len(c.fetchall))  to find if data is more than 4 columns.
 #Make if statement (if more than 4 columns, delete table to start over.)
 def delete_database():
