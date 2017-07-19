@@ -1,5 +1,4 @@
 import sqlite3
-import random
 
 conn = sqlite3.connect('exercises.db')
 conn2 = sqlite3.connect('exercises_2.db')
@@ -36,10 +35,12 @@ def dynamic_data_entry():
     conn.commit()
 
 
-def update_database():
-    pass
 def random_select():
-    c.execute('SELECT legs FROM exercises ORDER BY Random() LIMIT 100 ')
+    c.execute('SELECT legs FROM exercises ORDER BY Random() LIMIT 1')
+    data = c.fetchone()  #fetchone can be used as well
+    print(data[0])
+    conn.commit()
+
 # c.execute('SELECT * FROM exercises_2) then data=(len(c.fetchall))  to find if data is more than 4 columns.
 #Make if statement (if more than 4 columns, delete table to start over.)
 def delete_database():
@@ -50,7 +51,7 @@ def delete_database():
 #data_entry()
 #delete_database()
 #dynamic_data_entry()
-
-
-
+random_select()
+c.close()
+conn.close()
 
