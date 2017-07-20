@@ -38,20 +38,34 @@ def dynamic_data_entry():
 def random_select():
     c.execute('SELECT legs FROM exercises ORDER BY Random() LIMIT 1')
     data = c.fetchone()  #fetchone can be used as well
-    print(data[0])
-    conn.commit()
+    data = data[0]
+    return data
+    #conn.commit()
 
+def random_select2():
+    c.execute('SELECT legs FROM exercises ORDER BY Random() LIMIT 1')
+    data2 = c.fetchone()  #fetchone can be used as well
+    data2 = data2[0]
+    return data2
+    #conn.commit()
 # c.execute('SELECT * FROM exercises_2) then data=(len(c.fetchall))  to find if data is more than 4 columns.
 #Make if statement (if more than 4 columns, delete table to start over.)
 def delete_database():
     c.execute('DELETE FROM exercises')
     conn.commit() 
 
-#create_table()
-#data_entry()
-#delete_database()
-#dynamic_data_entry()
-random_select()
+
+def compare_random():
+    data = random_select()
+    data2 = random_select2()
+    print (data)
+    print (data2)
+    if data == data2:
+        print("same")
+    else:
+        print("different")
+
+compare_random()
 c.close()
 conn.close()
 
