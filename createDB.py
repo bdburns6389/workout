@@ -48,19 +48,17 @@ def random_select2(exercise):
     data2 = data2[0]
     return data2
     #conn.commit()
-# c.execute('SELECT * FROM exercises_2) then data=(len(c.fetchall))  to find if data is more than 4 columns.
-#Make if statement (if more than 4 columns, delete table to start over.)
-"""def delete_database():
-    c.execute('DELETE FROM exercises')
-    conn.commit()""" """Not needed, but might be good to test stuff with."""
+#"""def delete_database():
+#   c.execute('DELETE * FROM exercises_2')
+#  conn.commit()""" """Not needed, but might be good to test stuff with."""
 def db2_length():
-    '''Returns no exercises'''
+    '''Returns no exercises, fix then write function that determine if more than 4 exercises, delete if so.'''
     c.execute('SELECT * FROM exercises_2')
     data = c.fetchall()
-    data = len(data)
+    data2 = len(data)
     print (data)
 
-def compare_random(exercise1,exercise2):
+def compare_random(exercise1, exercise2):
     """Put two parameters in compare, to correspond to one in random select and one in random select2"""
     data = random_select(exercise1)
     data2 = random_select2(exercise2)
