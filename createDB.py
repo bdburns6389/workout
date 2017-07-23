@@ -35,27 +35,28 @@ def dynamic_data_entry():
     conn.commit()
 
 
-def random_select():
-    c.execute('SELECT legs FROM exercises ORDER BY Random() LIMIT 1')
+def random_select(exercise):
+    c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
     data = c.fetchone()  #fetchone can be used as well
     data = data[0]
-    return data
+    print (data)
     #conn.commit()
 
-def random_select2():
-    c.execute('SELECT legs FROM exercises ORDER BY Random() LIMIT 1')
+def random_select2(exercise):
+    c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
     data2 = c.fetchone()  #fetchone can be used as well
     data2 = data2[0]
     return data2
     #conn.commit()
 # c.execute('SELECT * FROM exercises_2) then data=(len(c.fetchall))  to find if data is more than 4 columns.
 #Make if statement (if more than 4 columns, delete table to start over.)
-def delete_database():
+"""def delete_database():
     c.execute('DELETE FROM exercises')
-    conn.commit() 
+    conn.commit()""" """Not needed, but might be good to test stuff with."""
 
 
 def compare_random():
+    """Put two parameters in compare, to correspond to one in random select and one in random select2"""
     data = random_select()
     data2 = random_select2()
     print (data)
@@ -65,16 +66,16 @@ def compare_random():
     else:
         print("different")
 
-def random_exercise(exer):
+def random_exercise(exercise):
     """Chooses random exercise using parameter."""
-    c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exer))
+    c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
     data = c.fetchone()  #fetchone can be used as well
     data = data[0]
     print (data)
 
 #create_table()
 #dynamic_data_entry()
-insert_exercise("chest")
+random_select("arms")
 c.close()
 conn.close()
 
