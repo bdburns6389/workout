@@ -65,7 +65,16 @@ def compare_random():
     else:
         print("different")
 
-compare_random()
+def random_exercise(exer):
+    """Chooses random exercise using parameter."""
+    c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exer))
+    data = c.fetchone()  #fetchone can be used as well
+    data = data[0]
+    print (data)
+
+#create_table()
+#dynamic_data_entry()
+insert_exercise("chest")
 c.close()
 conn.close()
 
