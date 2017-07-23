@@ -53,12 +53,17 @@ def random_select2(exercise):
 """def delete_database():
     c.execute('DELETE FROM exercises')
     conn.commit()""" """Not needed, but might be good to test stuff with."""
+def db2_length():
+    '''Returns no exercises'''
+    c.execute('SELECT * FROM exercises_2')
+    data = c.fetchall()
+    data = len(data)
+    print (data)
 
-
-def compare_random(ex1,ex2):
+def compare_random(exercise1,exercise2):
     """Put two parameters in compare, to correspond to one in random select and one in random select2"""
-    data = random_select(ex1)
-    data2 = random_select2(ex2)
+    data = random_select(exercise1)
+    data2 = random_select2(exercise2)
     print (data)
     print (data2)
     if data == data2:
@@ -76,7 +81,8 @@ def random_exercise(exercise):
 #create_table()
 #dynamic_data_entry()
 #random_select("arms")
-compare_random("legs","legs")
+#compare_random("legs","legs")
+db2_length()
 c.close()
 conn.close()
 
