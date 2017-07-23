@@ -39,7 +39,7 @@ def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
     data = c.fetchone()  #fetchone can be used as well
     data = data[0]
-    print (data)
+    return data
     #conn.commit()
 
 def random_select2(exercise):
@@ -55,10 +55,10 @@ def random_select2(exercise):
     conn.commit()""" """Not needed, but might be good to test stuff with."""
 
 
-def compare_random():
+def compare_random(ex1,ex2):
     """Put two parameters in compare, to correspond to one in random select and one in random select2"""
-    data = random_select()
-    data2 = random_select2()
+    data = random_select(ex1)
+    data2 = random_select2(ex2)
     print (data)
     print (data2)
     if data == data2:
@@ -75,7 +75,8 @@ def random_exercise(exercise):
 
 #create_table()
 #dynamic_data_entry()
-random_select("arms")
+#random_select("arms")
+compare_random("legs","legs")
 c.close()
 conn.close()
 
