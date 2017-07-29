@@ -17,12 +17,12 @@ def data_entry():
     c2.execute("INSERT INTO exercises_2 VALUES('Squats', 'Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell "
                "Curl', 'Calf Raises')")
 
-    #conn.commit()
-    #conn2.commit()
-    #c.close()
-    #2.close()
-    #conn.close()
-    #conn2.close()
+    conn.commit()
+    conn2.commit()
+    c.close()
+    c2.close()
+    conn.close()
+    conn2.close()
 
 def dynamic_data_entry():
     legs = str(input("Please input a leg exercise: "))
@@ -89,19 +89,21 @@ def random_exercise(exercise):
     return (data)
 
 def delete_db():
-    """Doesnt work"""
     c.execute('DELETE FROM exercises')
+    conn.commit()
     
-
+def delete_db2():
+    c2.execute('DELETE FROM exercises_2')
+    conn2.commit()
 
 create_table()
 #data_entry()
 #dynamic_data_entry()
 #random_select("arms")
 #compare_random("legs","legs")
-db_length()
+#db_length()
 #db2_random_insert("legs")
-#delete_db()
+delete_db2()
 #c.close()
 #conn.close()
 
