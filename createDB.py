@@ -89,10 +89,12 @@ def random_exercise(exercise):
     return (data)
 
 def delete_db():
+    """Deletes entire exercises database"""
     c.execute('DELETE FROM exercises')
     conn.commit()
     
 def delete_db2():
+    """Deletes entire exercises_2 database"""
     c2.execute('DELETE FROM exercises_2')
     conn2.commit()
 
