@@ -17,12 +17,12 @@ def data_entry():
     c2.execute("INSERT INTO exercises_2 VALUES('Squats', 'Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell "
                "Curl', 'Calf Raises')")
 
-    conn.commit()
-    conn2.commit()
-    c.close()
-    c2.close()
-    conn.close()
-    conn2.close()
+    #conn.commit()
+    #conn2.commit()
+    #c.close()
+    #2.close()
+    #conn.close()
+    #conn2.close()
 
 def dynamic_data_entry():
     legs = str(input("Please input a leg exercise: "))
@@ -53,10 +53,22 @@ def random_select2(exercise):
 #  conn.commit()""" """Not needed, but might be good to test stuff with."""
 def db2_length():
     '''Returns no exercises, fix then write function that determine if more than 4 exercises, delete if so.'''
-    c.execute('SELECT * FROM exercises_2')
-    data = c.fetchall()
-    data2 = len(data)
+    c2.execute('SELECT * FROM exercises_2')
+    data = c2.fetchall()
+    data = len(data)
     print (data)
+
+def db_length():
+    c.execute('SELECT * FROM exercises')
+    data = c.fetchall()
+    data = len(data)
+    print (data)
+
+def db2_random_insert(exercise):
+    #Not Working correctly
+    """Returns exercise randomly, then puts it into second database."""
+    data = random_exercise(exercise)
+    c.execute("INSERT INTO exercises_2 (legs) VALUES %s" % (data)) 
 
 def compare_random(exercise1, exercise2):
     """Put two parameters in compare, to correspond to one in random select and one in random select2"""
@@ -74,13 +86,22 @@ def random_exercise(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
     data = c.fetchone()  #fetchone can be used as well
     data = data[0]
-    print (data)
+    return (data)
 
-#create_table()
+def delete_db():
+    """Doesnt work"""
+    c.execute('DELETE FROM exercises')
+    
+
+
+create_table()
+#data_entry()
 #dynamic_data_entry()
 #random_select("arms")
 #compare_random("legs","legs")
-db2_length()
-c.close()
-conn.close()
+db_length()
+#db2_random_insert("legs")
+#delete_db()
+#c.close()
+#conn.close()
 
