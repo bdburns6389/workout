@@ -9,19 +9,24 @@ c2 = conn2.cursor()
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS exercises(legs TEXT, chest TEXT, back TEXT, abdominals TEXT, arms TEXT, '
               'misc TEXT)')
+    
+
+def create_table2():
     c2.execute('CREATE TABLE IF NOT EXISTS exercises_2(legs TEXT, chest TEXT, back TEXT, abdominals TEXT, arms TEXT, '
                'misc TEXT)')
+
 def data_entry():
     c.execute("INSERT INTO exercises VALUES('Squats', 'Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell Curl', "
               "'Calf Raises')")
+    conn.commit()
+    c.close()
+    conn.close()
+
+def data_entry2():
     c2.execute("INSERT INTO exercises_2 VALUES('Squats', 'Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell "
                "Curl', 'Calf Raises')")
-
-    conn.commit()
     conn2.commit()
-    c.close()
     c2.close()
-    conn.close()
     conn2.close()
 
 def dynamic_data_entry():
