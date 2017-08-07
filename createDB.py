@@ -30,6 +30,7 @@ def data_entry2():
     conn2.close()
 
 def dynamic_data_entry():
+    #Turn this into function that puts it in category selected by user.
     legs = str(input("Please input a leg exercise: "))
     chest = str(input("Please input a chest exercise: "))
     back = str(input("Please input a back exercise: "))
@@ -38,7 +39,6 @@ def dynamic_data_entry():
     misc = str(input("Please input a miscellaneous exercise: "))
     c.execute("INSERT INTO exercises_2 (legs, chest, back, abdominals, arms, misc) VALUES (?, ?, ?, ?, ?, ?)", (legs, chest, back, abdominals, arms, misc))
     conn.commit()
-
 
 def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
@@ -53,9 +53,7 @@ def random_select2(exercise):
     data2 = data2[0]
     return data2
     #conn.commit()
-#"""def delete_database():
-#   c.execute('DELETE * FROM exercises_2')
-#  conn.commit()""" """Not needed, but might be good to test stuff with."""
+
 def db2_length():
     '''Returns no exercises, fix then write function that determine if more than 4 exercises, delete if so.'''
     c2.execute('SELECT * FROM exercises_2')
@@ -67,7 +65,7 @@ def db_length():
     c.execute('SELECT * FROM exercises')
     data = c.fetchall()
     data = len(data)
-    print (data)
+    return (data)
 
 def db2_random_insert(exercise):
     #Not Working correctly
@@ -104,13 +102,17 @@ def delete_db2():
     conn2.commit()
 
 create_table()
-#data_entry()
+create_table2()
+#data_entry2()
 #dynamic_data_entry()
 #random_select("arms")
 #compare_random("legs","legs")
-#db_length()
+bad = db_length()
+if bad <= 1:
+    delete_db()
+#db2_length()
 #db2_random_insert("legs")
-delete_db2()
+#delete_db2()
 #c.close()
 #conn.close()
 
