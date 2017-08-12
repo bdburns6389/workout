@@ -15,19 +15,12 @@ def create_table2():
     c2.execute('CREATE TABLE IF NOT EXISTS exercises_2(legs TEXT, chest TEXT, back TEXT, abdominals TEXT, arms TEXT, '
                'misc TEXT)')
 
-def data_entry():
+def populate_db():
     c.execute("INSERT INTO exercises VALUES('Squats', 'Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell Curl', "
               "'Calf Raises')")
     conn.commit()
     c.close()
     conn.close()
-
-def data_entry2():
-    c2.execute("INSERT INTO exercises_2 VALUES('Squats', 'Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell "
-               "Curl', 'Calf Raises')")
-    conn2.commit()
-    c2.close()
-    conn2.close()
 
 def dynamic_data_entry():
     #Turn this into function that puts it in category selected by user.
@@ -42,9 +35,9 @@ def dynamic_data_entry():
 
 def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-    data = c.fetchone()  #fetchone can be used as well
+    data = c.fetchone()
     data = data[0]
-    return data
+    return (data)
     #conn.commit()
 
 def random_select2(exercise):
@@ -65,7 +58,7 @@ def db_length():
     c.execute('SELECT * FROM exercises')
     data = c.fetchall()
     data = len(data)
-    return (data)
+    print (data)
 
 def db2_random_insert(exercise):
     #Not Working correctly
@@ -101,18 +94,25 @@ def delete_db2():
     c2.execute('DELETE FROM exercises_2')
     conn2.commit()
 
-create_table()
-create_table2()
-#data_entry2()
-#dynamic_data_entry()
-#random_select("arms")
-#compare_random("legs","legs")
-bad = db_length()
+
+
+
+
+
+
+
+
+delete_db2()
+
+
+
+
+
+
+
+
+'''bad = db_length()
 if bad <= 1:
-    delete_db()
-#db2_length()
-#db2_random_insert("legs")
-#delete_db2()
-#c.close()
-#conn.close()
+    delete_db()'''
+
 
