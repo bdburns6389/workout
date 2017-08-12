@@ -22,17 +22,6 @@ def populate_db():
     c.close()
     conn.close()
 
-def dynamic_data_entry():
-    #Turn this into function that puts it in category selected by user.
-    legs = str(input("Please input a leg exercise: "))
-    chest = str(input("Please input a chest exercise: "))
-    back = str(input("Please input a back exercise: "))
-    abdominals = str(input("Please input an abdominal exercise: "))
-    arms = str(input('Please input an arm exercise: '))
-    misc = str(input("Please input a miscellaneous exercise: "))
-    c.execute("INSERT INTO exercises_2 (legs, chest, back, abdominals, arms, misc) VALUES (?, ?, ?, ?, ?, ?)", (legs, chest, back, abdominals, arms, misc))
-    conn.commit()
-
 def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
     data = c.fetchone()
@@ -67,6 +56,7 @@ def db2_random_insert(exercise):
     c.execute("INSERT INTO exercises_2 (legs) VALUES %s" % (data)) 
 
 def compare_random(exercise1, exercise2):
+    #Works but needs changing to be functional.
     """Put two parameters in compare, to correspond to one in random select and one in random select2"""
     data = random_select(exercise1)
     data2 = random_select2(exercise2)
@@ -102,7 +92,7 @@ def delete_db2():
 
 
 
-delete_db2()
+compare_random("legs", "legs")
 
 
 
