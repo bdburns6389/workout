@@ -15,11 +15,20 @@ def create_table2():
                'misc TEXT)')
 
 def populate_db():
-    c.execute("INSERT INTO exercises VALUES('Squats', 'Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell Curl', "
-              "'Calf Raises')")
+    c.execute("INSERT INTO exercises VALUES('Squats', 'Barbell Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell Curl', "
+              "'Calf Raises (Squat Machine)')")
+    c.execute("INSERT INTO exercises VALUES('Deadlift', 'Dumbbell Bench Press', 'Cable Row', 'Ab Roller', 'Chinups', "
+              "'Calf Raises (Sit Down Machine)')")
+    c.execute("INSERT INTO exercises VALUES('Romanian Deadlift', 'Barbell Incline Bench Press', 'Wide-Grip Pullups', 'Russian Twists', 'Dips', "
+              "'Farmer Carry')")
+    c.execute("INSERT INTO exercises VALUES('Hack Squats', 'Dumbbell Incline Bench Press', 'Bent Over Barbell Row', 'Cable Twists', 'Dumbbell Curls', "
+              "'Wrist Curls')")
+    c.execute("INSERT INTO exercises VALUES('Front Squats', 'Dips', 'Cable Pulldown', 'Toes-to-Bar', 'Tricep Cable Pushdown', "
+              "'Zottman Curls')")
+    c.execute("INSERT INTO exercises VALUES('Clean Pull', 'Cable Flyes', 'Dips', 'Windshield Wipers', 'Tricep Cable Extension', "
+              "'Calf Raises (Leg Press Machine)')")
+    
     conn.commit()
-    c.close()
-    conn.close()
 
 def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
@@ -91,3 +100,5 @@ def reset_db2():
     bad = db2_length()
     if bad >= 4:
         delete_db2()
+
+
