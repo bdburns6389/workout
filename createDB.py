@@ -9,7 +9,6 @@ c2 = conn2.cursor()
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS exercises(legs TEXT, chest TEXT, back TEXT, abdominals TEXT, arms TEXT, '
               'misc TEXT)')
-    
 
 def create_table2():
     c2.execute('CREATE TABLE IF NOT EXISTS exercises_2(legs TEXT, chest TEXT, back TEXT, abdominals TEXT, arms TEXT, '
@@ -41,13 +40,23 @@ def db2_length():
     c2.execute('SELECT * FROM exercises_2')
     data = c2.fetchall()
     data = len(data)
-    print (data)
+    return data
+
+def random_into_db2():
+    legs = random_exercise("legs")
+    chest = random_exercise("chest")
+    back = random_exercise("back")
+    abdominals = random_exercise("abdominals")
+    arms = random_exercise("arms")
+    misc = random_exercise("misc")
+    c2.execute('INSERT INTO exercises_2 VALUES(?, ?, ?, ?, ?, ?);', (legs, chest, back, abdominals, arms, misc))
+    conn2.commit()
 
 def db_length():
     c.execute('SELECT * FROM exercises')
     data = c.fetchall()
     data = len(data)
-    print (data)
+    return data
 
 def db2_random_insert(exercise):
     #Not Working correctly
@@ -84,25 +93,11 @@ def delete_db2():
     c2.execute('DELETE FROM exercises_2')
     conn2.commit()
 
-
-
-
-
-
-
-
-
-compare_random("legs", "legs")
-
-
-
-
-
-
-
-
-'''bad = db_length()
-if bad <= 1:
-    delete_db()'''
+def reset_db2():
+    #Doesn't need to be a function.
+    random_into_db2()
+    bad = db2_length()
+    if bad >= 4:
+        delete_db2()
 
 
