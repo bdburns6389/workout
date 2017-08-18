@@ -45,9 +45,4 @@ Miscellaneous=
     Zottman Curls
     Wrist Curls
 
-Cardio=
-    Jogging
-    Jump Rope
-    Stair Climber
-    Punching Bag Routine
 
