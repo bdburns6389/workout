@@ -26,14 +26,12 @@ def random_select(exercise):
     data = c.fetchone()
     data = data[0]
     return (data)
-    #conn.commit()
 
 def random_select2(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-    data2 = c.fetchone()  #fetchone can be used as well
+    data2 = c.fetchone()
     data2 = data2[0]
     return data2
-    #conn.commit()
 
 def db2_length():
     '''Returns no exercises, fix then write function that determine if more than 4 exercises, delete if so.'''
@@ -58,12 +56,6 @@ def db_length():
     data = len(data)
     return data
 
-def db2_random_insert(exercise):
-    #Not Working correctly
-    """Returns exercise randomly, then puts it into second database."""
-    data = random_exercise(exercise)
-    c.execute("INSERT INTO exercises_2 (legs) VALUES %s" % (data)) 
-
 def compare_random(exercise1, exercise2):
     #Works but needs changing to be functional.
     """Put two parameters in compare, to correspond to one in random select and one in random select2"""
@@ -79,7 +71,7 @@ def compare_random(exercise1, exercise2):
 def random_exercise(exercise):
     """Chooses random exercise using parameter."""
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-    data = c.fetchone()  #fetchone can be used as well
+    data = c.fetchone()
     data = data[0]
     return (data)
 
@@ -99,5 +91,3 @@ def reset_db2():
     bad = db2_length()
     if bad >= 4:
         delete_db2()
-
-
