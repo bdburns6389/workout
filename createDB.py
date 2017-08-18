@@ -102,3 +102,11 @@ def reset_db2():
         delete_db2()
 
 
+def populate_initialization:
+    #Doesn't need to be a function.
+    create_table()
+    data = db_length()
+    if data < 6:
+        populate_db()
+
+
