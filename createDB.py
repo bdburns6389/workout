@@ -27,7 +27,6 @@ def populate_db():
               "'Zottman Curls')")
     c.execute("INSERT INTO exercises VALUES('Clean Pull', 'Cable Flyes', 'Dips', 'Windshield Wipers', 'Tricep Cable Extension', "
               "'Calf Raises (Leg Press Machine)')")
-    
     conn.commit()
 
 def random_select(exercise):
@@ -66,16 +65,20 @@ def db_length():
     return data
 
 def compare_random(exercise1, exercise2):
-    #Works but needs changing to be functional.
+    #Works but needs changing to be functional.  Should make random function rerun if the same.
     """Put two parameters in compare, to correspond to one in random select and one in random select2"""
-    data = random_select(exercise1)
-    data2 = random_select2(exercise2)
-    print (data)
-    print (data2)
-    if data == data2:
-        print("same")
-    else:
-        print("different")
+    exer1 = random_select(exercise1)
+    exer2 = random_select2(exercise2)
+    print (exer1)
+    print (exer2)
+    if exer1 == exer2:
+        random_select(exercise1)
+
+def match_random_to_db2():
+    c.execute('SELECT (legs) FROM exercises')
+    data = c.fetchall()
+    return data
+
 
 def random_exercise(exercise):
     """Chooses random exercise using parameter."""
@@ -101,8 +104,7 @@ def reset_db2():
     if bad >= 4:
         delete_db2()
 
-
-def populate_initialization:
+def populate_initialization():
     #Doesn't need to be a function.
     create_table()
     data = db_length()
@@ -110,3 +112,9 @@ def populate_initialization:
         populate_db()
 
 
+'''data = match_random_to_db2()
+print (data)
+value = 'Squats'
+print (value)
+if (value,) in data:
+    print ("he")'''
