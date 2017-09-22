@@ -1,5 +1,6 @@
 import sqlite3
-
+#Fetchall from db2, put in list, see if exercise (variable) from
+#first db is in list
 conn = sqlite3.connect('exercises.db')
 conn2 = sqlite3.connect('exercises_2.db')
 
@@ -35,11 +36,11 @@ def random_select(exercise):
     ran_select = ran_select[0]
     return (ran_select)
 
-def random_select2(exercise):
-    c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-    data2 = c.fetchone()
-    data2 = data2[0]
-    return data2
+# def random_select2(exercise):
+#     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
+#     data2 = c.fetchone()
+#     data2 = data2[0]
+#     return data2
 
 def db2_length():
     '''Returns no exercises, fix then write function that determine if more than 4 exercises, delete if so.'''
@@ -49,6 +50,7 @@ def db2_length():
     return data
 
 def random_into_db2():
+    #Add body groups as parameters to function, maybe convert to str()?
     legs = random_exercise("legs")
     chest = random_exercise("chest")
     back = random_exercise("back")
@@ -74,10 +76,10 @@ def compare_random(exercise1, exercise2):
     if exer1 == exer2:
         random_select(exercise1)
 
-def match_random_to_db2():
-    c.execute('SELECT (legs) FROM exercises')
-    data = c.fetchall()
-    return data
+# def match_random_to_db2():
+#     c.execute('SELECT (legs) FROM exercises')
+#     data = c.fetchall()
+#     return data
 
 
 def random_exercise(exercise):
@@ -97,19 +99,19 @@ def delete_db2():
     c2.execute('DELETE FROM exercises_2')
     conn2.commit()
 
-def reset_db2():
-    #Doesn't need to be a function.
-    random_into_db2()
-    bad = db2_length()
-    if bad >= 4:
-        delete_db2()
+# def reset_db2():
+#     #Doesn't need to be a function.
+#     random_into_db2()
+#     bad = db2_length()
+#     if bad >= 4:
+#         delete_db2()
 
-def populate_initialization():
-    #Doesn't need to be a function.
-    create_table()
-    data = db_length()
-    if data < 6:
-        populate_db()
+# def populate_initialization():
+#     #Doesn't need to be a function.
+#     create_table()
+#     data = db_length()
+#     if data < 6:
+#         populate_db()
 
 
 #Will actually make exercises return in a way that they DO REPEAT
@@ -118,7 +120,7 @@ def check_if_clash(column, exer1, exer2):
         print(1)
         while exer1 == exer2:
             exer1 = random_exercise(column)
-    return (exer1)
+    return (exer2)
 
 
 def main():
@@ -145,7 +147,9 @@ def main():
 
     print(legs_exer,chest_exer,back_exer,abdominals_exer,arms_exer,misc_exer)
 
-
+    #does this work better?
+    if legs_exer == back_exer or chest_exer == back_exer or chest_exer==arms_exer or arms_exer == back_exer:
+        while
     """
     if chest == back:
         print(chest,back)
