@@ -1,4 +1,4 @@
-from createDB import *
+import createDB
 import sqlite3
 
 conn = sqlite3.connect('exercises.db')

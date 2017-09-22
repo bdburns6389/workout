@@ -31,9 +31,9 @@ def populate_db():
 
 def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-    data = c.fetchone()
-    data = data[0]
-    return (data)
+    ran_select = c.fetchone()
+    ran_select = ran_select[0]
+    return (ran_select)
 
 def random_select2(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
@@ -112,6 +112,52 @@ def populate_initialization():
         populate_db()
 
 
+#Will actually make exercises return in a way that they DO REPEAT
+def check_if_clash(column, exer1, exer2):
+    if exer1 == exer2:
+        print(1)
+        while exer1 == exer2:
+            exer1 = random_exercise(column)
+    return (exer1)
+
+
+def main():
+    create_table()
+    create_table2()
+    data = db_length()
+    if data < 6:
+        populate_db()
+    data2 = db2_length()
+    if data2 >= 4:
+        delete_db2()
+    legs_exer = random_exercise("legs")
+    chest_exer = random_exercise("chest")
+    back_exer = random_exercise("back")
+    abdominals_exer = random_exercise("abdominals")
+    arms_exer = random_exercise("arms")
+    misc_exer = random_exercise("misc")
+
+ 
+    print(check_if_clash("legs", legs_exer, back_exer))
+    print(check_if_clash("chest", chest_exer,back_exer))
+    print(check_if_clash("chest", chest_exer,arms_exer))
+    print(check_if_clash("back", arms_exer,back_exer))
+
+    print(legs_exer,chest_exer,back_exer,abdominals_exer,arms_exer,misc_exer)
+
+
+    """
+    if chest == back:
+        print(chest,back)
+        while chest == back:
+            chest = random_exercise("chest")
+    print(chest,back)"""
+
+
+if __name__ == '__main__':
+    main()
+        
+        
 '''data = match_random_to_db2()
 print (data)
 value = 'Squats'
