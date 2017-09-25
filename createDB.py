@@ -114,8 +114,6 @@ def delete_db2():
 #         populate_db()
 
 
-#causes infinite loop, how to end it?
-#else returns list
 def check_if_clash(exercise, exer1, exer2):
     if exer1 == exer2:
         while exer1 == exer2:
@@ -143,14 +141,19 @@ def main():
     abdominals_exer = random_exercise("abdominals")
     arms_exer = random_exercise("arms")
     misc_exer = random_exercise("misc")
-    
-    print (legs_exer,back_exer,chest_exer,abdominals_exer,arms_exer,misc_exer)
+    #Makes sure exercises don't repeat
     legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
     arms_exer,back_exer = check_if_clash("arms", arms_exer, back_exer)
     chest_exer,back_exer = check_if_clash("chest", chest_exer, back_exer)
     back_exer,chest_exer = check_if_clash("back", back_exer, chest_exer)
     print (legs_exer,back_exer,chest_exer,abdominals_exer,arms_exer,misc_exer)
-
+    
+    #Pull exercise list from db2, make sure they don't match chosen exercise(use list and ask if exercise from db1 is in list of db2)
+    
+    
+    
+    
+    #Put exercises into db2 using random_into_db2() function.
 
 if __name__ == '__main__':
     main()
