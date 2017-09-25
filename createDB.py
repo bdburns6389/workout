@@ -114,13 +114,21 @@ def delete_db2():
 #         populate_db()
 
 
-#Will actually make exercises return in a way that they DO REPEAT
-def check_if_clash(column, exer1, exer2):
+#causes infinite loop, how to end it?
+#else returns list
+def check_if_clash(exercise, exer1, exer2):
     if exer1 == exer2:
         print(1)
         while exer1 == exer2:
-            exer1 = random_exercise(column)
-    return (exer2)
+            new_exer = random_exercise(exercise)
+            
+        return new_exer
+    else:
+        return(exer1,exer2)
+    
+
+
+
 
 
 def main():
@@ -138,33 +146,7 @@ def main():
     abdominals_exer = random_exercise("abdominals")
     arms_exer = random_exercise("arms")
     misc_exer = random_exercise("misc")
-
- 
-    print(check_if_clash("legs", legs_exer, back_exer))
-    print(check_if_clash("chest", chest_exer,back_exer))
-    print(check_if_clash("chest", chest_exer,arms_exer))
-    print(check_if_clash("back", arms_exer,back_exer))
-
-    print(legs_exer,chest_exer,back_exer,abdominals_exer,arms_exer,misc_exer)
-
-    #does this work better?
-    if legs_exer == back_exer or chest_exer == back_exer or chest_exer==arms_exer or arms_exer == back_exer:
-        while
-    """
-    if chest == back:
-        print(chest,back)
-        while chest == back:
-            chest = random_exercise("chest")
-    print(chest,back)"""
-
+    
 
 if __name__ == '__main__':
     main()
-        
-        
-'''data = match_random_to_db2()
-print (data)
-value = 'Squats'
-print (value)
-if (value,) in data:
-    print ("he")'''
