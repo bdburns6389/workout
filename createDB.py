@@ -144,12 +144,13 @@ def main():
     arms_exer = random_exercise("arms")
     misc_exer = random_exercise("misc")
     
-    print (legs_exer,back_exer)
+    print (legs_exer,back_exer,chest_exer,abdominals_exer,arms_exer,misc_exer)
     legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
-    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
-    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
-    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
-    print (legs_exer,back_exer)
+    arms_exer,back_exer = check_if_clash("arms", arms_exer, back_exer)
+    chest_exer,back_exer = check_if_clash("chest", chest_exer, back_exer)
+    back_exer,chest_exer = check_if_clash("back", back_exer, chest_exer)
+    print (legs_exer,back_exer,chest_exer,abdominals_exer,arms_exer,misc_exer)
+
 
 if __name__ == '__main__':
     main()
