@@ -118,13 +118,10 @@ def delete_db2():
 #else returns list
 def check_if_clash(exercise, exer1, exer2):
     if exer1 == exer2:
-        print(1)
         while exer1 == exer2:
-            new_exer = random_exercise(exercise)
-            
-        return new_exer
-    else:
-        return(exer1,exer2)
+            exer1 = random_exercise(exercise)
+    return (exer1,exer2)
+
     
 
 
@@ -147,6 +144,12 @@ def main():
     arms_exer = random_exercise("arms")
     misc_exer = random_exercise("misc")
     
+    print (legs_exer,back_exer)
+    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
+    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
+    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
+    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
+    print (legs_exer,back_exer)
 
 if __name__ == '__main__':
     main()
