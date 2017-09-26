@@ -119,6 +119,20 @@ def check_if_clash(exercise, exer1, exer2):
         while exer1 == exer2:
             exer1 = random_exercise(exercise)
     return (exer1,exer2)
+    
+
+#make work
+def randExercise(ex):
+  return random ''
+
+  exercises = []
+
+    for exerciseType in ['legs','chest','back']:
+      tmp = randExercise(exerciseType)
+      while(tmp in exercises):
+        tmp = randExercise(exerciseType)
+      exercises.append(tmp)
+ 
 
     
 
