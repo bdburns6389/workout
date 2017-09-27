@@ -1,4 +1,5 @@
 import sqlite3
+import random
 #Fetchall from db2, put in list, see if exercise (variable) from
 #first db is in list
 conn = sqlite3.connect('exercises.db')
@@ -121,17 +122,34 @@ def check_if_clash(exercise, exer1, exer2):
     return (exer1,exer2)
     
 
-#make work
-def randExercise(ex):
-  return random ''
+# #make work
+# def randExercise(legs_exer, chest_exer, back_exer, abdominals_exer, arms_exer,misc_exer):
+#     """Returns List of exercises from each body part that are unique from each other."""
 
-  exercises = []
+#     return random.randrange(4)
 
-    for exerciseType in ['legs','chest','back']:
-      tmp = randExercise(exerciseType)
-      while(tmp in exercises):
-        tmp = randExercise(exerciseType)
-      exercises.append(tmp)
+#     uniqueExercises = []
+
+#     for exerciseType in [legs_exer, chest_exer, back_exer, abdominals_exer, arms_exer, misc_exer]:
+#         temp = random_exercise(exerciseType)
+#         while temp in uniqueExercises:
+#             temp = random_exercise(exerciseType)
+#             uniqueExercises.append(temp)
+
+#     print(uniqueExercises)
+        
+def unique_exercises(a, b, z, d, e, f):
+    """Returns List of exercises from each body part that are unique from each other."""
+
+    #return random.randrange(4)
+
+    unique_exercises_list = []
+
+    for exercise_type in [a, b, z, d, e, f]:
+        temp = random_exercise(exercise_type)
+        while temp in unique_exercises_list:
+            temp = random_exercise(exercise_type)
+            print(temp)
  
 
     
@@ -156,12 +174,13 @@ def main():
     arms_exer = random_exercise("arms")
     misc_exer = random_exercise("misc")
     #Makes sure exercises don't repeat
-    legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
-    arms_exer,back_exer = check_if_clash("arms", arms_exer, back_exer)
-    chest_exer,back_exer = check_if_clash("chest", chest_exer, back_exer)
-    back_exer,chest_exer = check_if_clash("back", back_exer, chest_exer)
+    # legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
+    # arms_exer,back_exer = check_if_clash("arms", arms_exer, back_exer)
+    # chest_exer,back_exer = check_if_clash("chest", chest_exer, back_exer)
+    # back_exer,chest_exer = check_if_clash("back", back_exer, chest_exer)
     print (legs_exer,back_exer,chest_exer,abdominals_exer,arms_exer,misc_exer)
-    
+    unique_exercises("legs","back","chest","abdominals","arms","misc")
+    print(1)
     #Pull exercise list from db2, make sure they don't match chosen exercise(use list and ask if exercise from db1 is in list of db2)
     
     
