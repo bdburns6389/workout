@@ -120,43 +120,24 @@ def check_if_clash(exercise, exer1, exer2):
         while exer1 == exer2:
             exer1 = random_exercise(exercise)
     return (exer1,exer2)
-    
-
-# #make work
-# def randExercise(legs_exer, chest_exer, back_exer, abdominals_exer, arms_exer,misc_exer):
-#     """Returns List of exercises from each body part that are unique from each other."""
-
-#     return random.randrange(4)
-
-#     uniqueExercises = []
-
-#     for exerciseType in [legs_exer, chest_exer, back_exer, abdominals_exer, arms_exer, misc_exer]:
-#         temp = random_exercise(exerciseType)
-#         while temp in uniqueExercises:
-#             temp = random_exercise(exerciseType)
-#             uniqueExercises.append(temp)
-
-#     print(uniqueExercises)
         
-def unique_exercises(a, b, z, d, e, f):
+def unique_exercises(*args):
     """Returns List of exercises from each body part that are unique from each other."""
-
-    #return random.randrange(4)
+    
+    #return random.randrange(4) (What does this do?)
+    #Is using *args valid? (If not, use string for arguments, e.g. "legs")
 
     unique_exercises_list = []
 
-    for exercise_type in [a, b, z, d, e, f]:
+    for exercise_type in [*args]:
         temp = random_exercise(exercise_type)
         while temp in unique_exercises_list:
             temp = random_exercise(exercise_type)
             print(temp)
+        unique_exercises_list.append(temp)
+
+    print(unique_exercises_list)
  
-
-    
-
-
-
-
 
 def main():
     create_table()
