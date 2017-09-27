@@ -4,17 +4,19 @@ import random
 #first db is in list
 conn = sqlite3.connect('exercises.db')
 conn2 = sqlite3.connect('exercises_2.db')
-
 c = conn.cursor()
 c2 = conn2.cursor()
+
 
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS exercises(legs TEXT, chest TEXT, back TEXT, abdominals TEXT, arms TEXT, '
               'misc TEXT)')
 
+
 def create_table2():
     c2.execute('CREATE TABLE IF NOT EXISTS exercises_2(legs TEXT, chest TEXT, back TEXT, abdominals TEXT, arms TEXT, '
                'misc TEXT)')
+
 
 def populate_db():
     c.execute("INSERT INTO exercises VALUES('Squats', 'Barbell Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell Curl', "
@@ -31,11 +33,13 @@ def populate_db():
               "'Calf Raises (Leg Press Machine)')")
     conn.commit()
 
+
 def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-    ran_select = c.fetchone()
-    ran_select = ran_select[0]
-    return (ran_select)
+    rand_select = c.fetchone()
+    rand_select = rand_select[0]
+    return rand_select
+
 
 def db_length():
     c.execute('SELECT * FROM exercises')
@@ -43,38 +47,13 @@ def db_length():
     data = len(data)
     return data
 
+
 def db2_length():
-    '''Determines number of rows in second database.'''
+    """Determines number of rows in second database."""
     c2.execute('SELECT * FROM exercises_2')
     data = c2.fetchall()
     data = len(data)
     return data
-
-def random_into_db2():
-    #Add body groups as parameters to function, maybe convert to str()?
-    legs = random_exercise("legs")
-    chest = random_exercise("chest")
-    back = random_exercise("back")
-    abdominals = random_exercise("abdominals")
-    arms = random_exercise("arms")
-    misc = random_exercise("misc")
-    c2.execute('INSERT INTO exercises_2 VALUES(?, ?, ?, ?, ?, ?);', (legs, chest, back, abdominals, arms, misc))
-    conn2.commit()
-
-def compare_random(exercise1, exercise2):
-    #Works but needs changing to be functional.  Should make random function rerun if the same.
-    """Put two parameters in compare, to correspond to one in random select and one in random select2"""
-    exer1 = random_select(exercise1)
-    exer2 = random_select2(exercise2)
-    print (exer1)
-    print (exer2)
-    if exer1 == exer2:
-        random_select(exercise1)
-
-# def match_random_to_db2():
-#     c.execute('SELECT (legs) FROM exercises')
-#     data = c.fetchall()
-#     return data
 
 
 def random_exercise(exercise):
@@ -82,23 +61,27 @@ def random_exercise(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
     data = c.fetchone()
     data = data[0]
-    return (data)
+    return data
+
 
 def delete_db():
     """Deletes entire exercises database"""
     c.execute('DELETE FROM exercises')
     conn.commit()
-    
+
+
 def delete_db2():
     """Deletes entire exercises_2 database"""
     c2.execute('DELETE FROM exercises_2')
     conn2.commit()
 
+
 def check_if_clash(exercise, exer1, exer2):
     if exer1 == exer2:
         while exer1 == exer2:
             exer1 = random_exercise(exercise)
-    return (exer1,exer2)
+    return exer1, exer2
+
         
 def unique_exercises(*args):
     """Returns List of exercises from each body part that are unique from each other."""
@@ -109,9 +92,8 @@ def unique_exercises(*args):
         temp = random_exercise(exercise_type)
         while temp in unique_exercises_list:
             temp = random_exercise(exercise_type)
-            print(temp)
         unique_exercises_list.append(temp)
-    print(unique_exercises_list)
+    return unique_exercises_list
  
 
 def main():
@@ -123,26 +105,12 @@ def main():
     data2 = db2_length()
     if data2 >= 4:
         delete_db2()
-    legs_exer = random_exercise("legs")
-    chest_exer = random_exercise("chest")
-    back_exer = random_exercise("back")
-    abdominals_exer = random_exercise("abdominals")
-    arms_exer = random_exercise("arms")
-    misc_exer = random_exercise("misc")
-    #Makes sure exercises don't repeat
-    # legs_exer,back_exer = check_if_clash("legs", legs_exer, back_exer)
-    # arms_exer,back_exer = check_if_clash("arms", arms_exer, back_exer)
-    # chest_exer,back_exer = check_if_clash("chest", chest_exer, back_exer)
-    # back_exer,chest_exer = check_if_clash("back", back_exer, chest_exer)
-    print (legs_exer,back_exer,chest_exer,abdominals_exer,arms_exer,misc_exer)
-    unique_exercises("legs","back","chest","abdominals","arms","misc")
-    
+    print(unique_exercises("legs","back","chest","abdominals","arms","misc"))
+
     #Pull exercise list from db2, make sure they don't match chosen exercise(use list and ask if exercise from db1 is in list of db2)
     
-    
-    
-    
     #Put exercises into db2 using random_into_db2() function.
+
 
 if __name__ == '__main__':
     main()
