@@ -123,19 +123,15 @@ def check_if_clash(exercise, exer1, exer2):
         
 def unique_exercises(*args):
     """Returns List of exercises from each body part that are unique from each other."""
-    
     #return random.randrange(4) (What does this do?)
     #Is using *args valid? (If not, use string for arguments, e.g. "legs")
-
     unique_exercises_list = []
-
     for exercise_type in [*args]:
         temp = random_exercise(exercise_type)
         while temp in unique_exercises_list:
             temp = random_exercise(exercise_type)
             print(temp)
         unique_exercises_list.append(temp)
-
     print(unique_exercises_list)
  
 
