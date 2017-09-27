@@ -37,14 +37,14 @@ def random_select(exercise):
     ran_select = ran_select[0]
     return (ran_select)
 
-# def random_select2(exercise):
-#     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-#     data2 = c.fetchone()
-#     data2 = data2[0]
-#     return data2
+def db_length():
+    c.execute('SELECT * FROM exercises')
+    data = c.fetchall()
+    data = len(data)
+    return data
 
 def db2_length():
-    '''Returns no exercises, fix then write function that determine if more than 4 exercises, delete if so.'''
+    '''Determines number of rows in second database.'''
     c2.execute('SELECT * FROM exercises_2')
     data = c2.fetchall()
     data = len(data)
@@ -60,12 +60,6 @@ def random_into_db2():
     misc = random_exercise("misc")
     c2.execute('INSERT INTO exercises_2 VALUES(?, ?, ?, ?, ?, ?);', (legs, chest, back, abdominals, arms, misc))
     conn2.commit()
-
-def db_length():
-    c.execute('SELECT * FROM exercises')
-    data = c.fetchall()
-    data = len(data)
-    return data
 
 def compare_random(exercise1, exercise2):
     #Works but needs changing to be functional.  Should make random function rerun if the same.
@@ -99,21 +93,6 @@ def delete_db2():
     """Deletes entire exercises_2 database"""
     c2.execute('DELETE FROM exercises_2')
     conn2.commit()
-
-# def reset_db2():
-#     #Doesn't need to be a function.
-#     random_into_db2()
-#     bad = db2_length()
-#     if bad >= 4:
-#         delete_db2()
-
-# def populate_initialization():
-#     #Doesn't need to be a function.
-#     create_table()
-#     data = db_length()
-#     if data < 6:
-#         populate_db()
-
 
 def check_if_clash(exercise, exer1, exer2):
     if exer1 == exer2:
@@ -157,7 +136,7 @@ def main():
     # back_exer,chest_exer = check_if_clash("back", back_exer, chest_exer)
     print (legs_exer,back_exer,chest_exer,abdominals_exer,arms_exer,misc_exer)
     unique_exercises("legs","back","chest","abdominals","arms","misc")
-    print(1)
+    
     #Pull exercise list from db2, make sure they don't match chosen exercise(use list and ask if exercise from db1 is in list of db2)
     
     
