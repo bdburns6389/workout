@@ -82,10 +82,15 @@ def check_if_clash(exercise, exer1, exer2):
             exer1 = random_exercise(exercise)
     return exer1, exer2
 
+def db2_list(exercise_column):
+    """Returns list of exercise in called column(legs, back, etc), then compares that to
+    unique_exercises list to make sure it hasn't been done"""
+    #fetch leg exercise column into list
+    #compare that to index of unique_exercises that matches
+    #if similar, rerun exercise.
         
 def unique_exercises(*args):
     """Returns List of exercises from each body part that are unique from each other."""
-    #return random.randrange(4) (What does this do?)
     #Is using *args valid? (If not, use string for arguments, e.g. "legs")
     unique_exercises_list = []
     for exercise_type in [*args]:
@@ -108,7 +113,7 @@ def main():
     print(unique_exercises("legs","back","chest","abdominals","arms","misc"))
 
     #Pull exercise list from db2, make sure they don't match chosen exercise(use list and ask if exercise from db1 is in list of db2)
-    
+    #Possibly pull list from db2 to compare, then use unique_exercise function, to avoid more code.
     #Put exercises into db2 using random_into_db2() function.
 
 
