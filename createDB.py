@@ -83,11 +83,14 @@ def check_if_clash(exercise, exer1, exer2):
     return exer1, exer2
 
 def db2_list(exercise_column):
-    """Returns list of exercise in called column(legs, back, etc), then compares that to
-    unique_exercises list to make sure it hasn't been done"""
-    #fetch leg exercise column into list
-    #compare that to index of unique_exercises that matches
-    #if similar, rerun exercise.
+    c2.execute('SELECT %s FROM exercises' % (exercise_column))
+    data = c2.fetchall()
+    new = []
+    for i in data:
+        a = (i[0])
+        new.append(a)
+    return new
+    
         
 def unique_exercises(*args):
     """Returns List of exercises from each body part that are unique from each other."""
@@ -99,7 +102,7 @@ def unique_exercises(*args):
             temp = random_exercise(exercise_type)
         unique_exercises_list.append(temp)
     return unique_exercises_list
- 
+
 
 def main():
     create_table()
@@ -118,4 +121,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+     main()
+
+
+    #if similar, rerun exercise.
+
+
+#Now that I have a list, I need to compare unique_exercises list to the db2_list.
