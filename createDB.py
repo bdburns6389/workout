@@ -34,6 +34,7 @@ def populate_db():
     conn.commit()
 
 def populate_db2():
+    """Only for testing"""
     c2.execute("INSERT INTO exercises_2 VALUES('Squats', 'Barbell Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell Curl', "
               "'Calf Raises (Squat Machine)')")
     c2.execute("INSERT INTO exercises_2 VALUES('Deadlift', 'Dumbbell Bench Press', 'Cable Row', 'Ab Roller', 'Chinups', "
@@ -50,6 +51,7 @@ def random_select(exercise):
 
 
 def db_length():
+    """Returns number of rows in database."""
     c.execute('SELECT * FROM exercises')
     data = c.fetchall()
     data = len(data)
@@ -119,19 +121,25 @@ def main():
     if data < 6:
         populate_db()
     data2 = db2_length()
-    if data2 < 4:
-        populate_db2()
     if data2 >= 4:
         delete_db2()
-    print(unique_exercises("legs","back","chest","abdominals","arms","misc"))
+    test = (unique_exercises("legs","back","chest","abdominals","arms","misc"))
+    print(test)
     leg_db2 = db2_list("legs")
     back_db2 = db2_list("back")
     chest_db2 = db2_list("chest")
     abdominals_db2 = db2_list("abdominals")
     arms_db2 = db2_list("arms")
     misc_db2 = db2_list("misc")  #pulls list of each workout column from second database to compare to unique_exercises.
-    
+    #Following code compares unique_exercises to db2 column.  Now rerun until they arent the same.
+    print(leg_db2)
+    print (test[0])
+    if test[0] in leg_db2:
+        print (1)
     
 
 if __name__ == '__main__':
      main()
+     
+     
+ If the same, rerun until it isn't the same.  Return final list.
