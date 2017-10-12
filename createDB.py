@@ -33,6 +33,14 @@ def populate_db():
               "'Calf Raises (Leg Press Machine)')")
     conn.commit()
 
+def populate_db2():
+    c2.execute("INSERT INTO exercises_2 VALUES('Squats', 'Barbell Bench Press', 'Dumbbell Row', 'Roman Chair', 'Barbell Curl', "
+              "'Calf Raises (Squat Machine)')")
+    c2.execute("INSERT INTO exercises_2 VALUES('Deadlift', 'Dumbbell Bench Press', 'Cable Row', 'Ab Roller', 'Chinups', "
+              "'Calf Raises (Sit Down Machine)')")
+    c2.execute("INSERT INTO exercises_2 VALUES('Romanian Deadlift', 'Barbell Incline Bench Press', 'Wide-Grip Pullups', 'Russian Twists', 'Dips', "
+              "'Farmer Carry')")
+    conn2.commit()
 
 def random_select(exercise):
     c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
@@ -83,7 +91,7 @@ def check_if_clash(exercise, exer1, exer2):
     return exer1, exer2
 
 def db2_list(exercise_column):
-    c2.execute('SELECT %s FROM exercises' % (exercise_column))
+    c2.execute('SELECT %s FROM exercises_2' % (exercise_column))
     data = c2.fetchall()
     new = []
     for i in data:
@@ -111,20 +119,19 @@ def main():
     if data < 6:
         populate_db()
     data2 = db2_length()
+    if data2 < 4:
+        populate_db2()
     if data2 >= 4:
         delete_db2()
     print(unique_exercises("legs","back","chest","abdominals","arms","misc"))
-
-    #Pull exercise list from db2, make sure they don't match chosen exercise(use list and ask if exercise from db1 is in list of db2)
-    #Possibly pull list from db2 to compare, then use unique_exercise function, to avoid more code.
-    #Put exercises into db2 using random_into_db2() function.
-
+    leg_db2 = db2_list("legs")
+    back_db2 = db2_list("back")
+    chest_db2 = db2_list("chest")
+    abdominals_db2 = db2_list("abdominals")
+    arms_db2 = db2_list("arms")
+    misc_db2 = db2_list("misc")  #pulls list of each workout column from second database to compare to unique_exercises.
+    
+    
 
 if __name__ == '__main__':
      main()
-
-
-    #if similar, rerun exercise.
-
-
-#Now that I have a list, I need to compare unique_exercises list to the db2_list.
