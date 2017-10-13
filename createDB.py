@@ -124,22 +124,16 @@ def main():
     if data2 >= 4:
         delete_db2()
     test = (unique_exercises("legs","back","chest","abdominals","arms","misc"))
-    print(test)
-    leg_db2 = db2_list("legs")
-    back_db2 = db2_list("back")
-    chest_db2 = db2_list("chest")
-    abdominals_db2 = db2_list("abdominals")
-    arms_db2 = db2_list("arms")
-    misc_db2 = db2_list("misc")  #pulls list of each workout column from second database to compare to unique_exercises.
-    #Following code compares unique_exercises to db2 column.  Now rerun until they arent the same.
-    print(leg_db2)
-    print (test[0])
-    if test[0] in leg_db2:
-        print (1)
-    
+    print(test)  #Do not delete anything above this.
 
 if __name__ == '__main__':
      main()
      
      
- If the same, rerun until it isn't the same.  Return final list.
+#  final_list = []
+#  db2 exercise(legs or back or arms...)= [...]
+#  for i in unique_exercises list:
+#      while i in db2 exercise:
+#          temp = random_exercise(exercise_type)
+#      final_list.append(temp)
+#  return final_list
