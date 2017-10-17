@@ -154,14 +154,18 @@ def main():
     
     
     final_leg = compare_to_db2(db1_exercise_list[0], legs_db2, "legs")
-    print(final_leg)
-    final_chest = "3"
-    final_back = "2"
-    final_abdominals = "4"
-    final_arms = "5"
-    final_misc = "6"
+    final_chest = compare_to_db2(db1_exercise_list[1], chest_db2, "chest")
+    final_back = compare_to_db2(db1_exercise_list[2], back_db2, "back")
+    final_abdominals = compare_to_db2(db1_exercise_list[3], abdominals_db2, "abdominals")
+    final_arms = compare_to_db2(db1_exercise_list[4], arms_db2, "arms")
+    final_misc = compare_to_db2(db1_exercise_list[5], misc_db2, "misc")
     #add_to_db2(final_leg, final_chest, final_back, final_abdominals, final_arms, final_misc) #Don't delete
-    """"""
+    print(final_leg)
+    print(final_chest)
+    print(final_back)
+    print(final_abdominals)
+    print(final_arms)
+    print(final_misc)
 
 if __name__ == '__main__':
      main()
