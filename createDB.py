@@ -45,13 +45,6 @@ def populate_db2():
     conn2.commit()
 
 
-def random_select(exercise):
-    c.execute('SELECT %s FROM exercises ORDER BY Random() LIMIT 1' % (exercise))
-    rand_select = c.fetchone()
-    rand_select = rand_select[0]
-    return rand_select
-
-
 def db_length():
     """Returns number of rows in database."""
     c.execute('SELECT * FROM exercises')
@@ -88,13 +81,6 @@ def delete_db2():
     conn2.commit()
 
 
-def check_if_clash(exercise, exer1, exer2):
-    if exer1 == exer2:
-        while exer1 == exer2:
-            exer1 = random_exercise(exercise)
-    return exer1, exer2
-
-
 def db2_list(exercise_column):
     c2.execute('SELECT %s FROM exercises_2' % (exercise_column))
     data = c2.fetchall()
@@ -115,19 +101,29 @@ def unique_exercises(*args):
         unique_exercises_list.append(temp)
     return unique_exercises_list
 
+def brian_unique_exercises(*args):
+    unique_list = []
+    for i in [*args]:
+        temp = random_exercise(i)
+        db2_column = db2_list(i)
+        while temp in unique_list or temp in db2_column:
+            temp = random_exercise(i)
+        unique_list.append(temp)
+    return unique_list
+    
+
 
 def compare_to_db2(db1_exercise, db2_exercise_list, exercise_type):
-    
+    """Compares exercises from unique_exercises to second database to eliminate repeats."""
     while db1_exercise in db2_exercise_list:
         db1_exercise = random_exercise(exercise_type)
     return (db1_exercise)
     
 
-def add_to_db2(final_leg, final_back, final_chest, final_abdominals, final_arms, final_misc):
+def add_to_db2(leg, back, chest, abdominals, arms, misc):
     """Adds final list of exercises to second database."""
-    c2.execute("INSERT INTO exercises_2 (legs, back, chest, abdominals, arms, misc) VALUES (?, ?, ?, ?, ?, ?)", (final_leg, final_back, final_chest, final_abdominals, final_arms, final_misc))
+    c2.execute("INSERT INTO exercises_2 (legs, back, chest, abdominals, arms, misc) VALUES (?, ?, ?, ?, ?, ?)", (leg, back, chest, abdominals, arms, misc))
     conn2.commit()
-#work here ^^^^^^
 
 
 def main():
@@ -139,37 +135,10 @@ def main():
     data2 = db2_length()
     if data2 >= 4:
         delete_db2()
-    db1_exercise_list = (unique_exercises("legs","back","chest","abdominals","arms","misc"))
-    print(db1_exercise_list)  #Do not delete anything above this.
-    legs_db2= db2_list("legs")
-    chest_db2= db2_list("chest")
-    back_db2= db2_list("back")
-    abdominals_db2= db2_list("abdominals")
-    arms_db2= db2_list("arms")
-    misc_db2= db2_list("misc")
-    
-    print(legs_db2)
-    
-    
-    
-    
-    final_leg = compare_to_db2(db1_exercise_list[0], legs_db2, "legs")
-    final_chest = compare_to_db2(db1_exercise_list[1], chest_db2, "chest")
-    final_back = compare_to_db2(db1_exercise_list[2], back_db2, "back")
-    final_abdominals = compare_to_db2(db1_exercise_list[3], abdominals_db2, "abdominals")
-    final_arms = compare_to_db2(db1_exercise_list[4], arms_db2, "arms")
-    final_misc = compare_to_db2(db1_exercise_list[5], misc_db2, "misc")
-    #add_to_db2(final_leg, final_chest, final_back, final_abdominals, final_arms, final_misc) #Don't delete
-    print(final_leg)
-    print(final_chest)
-    print(final_back)
-    print(final_abdominals)
-    print(final_arms)
-    print(final_misc)
+    db1_exercise_list = (brian_unique_exercises("legs","back","chest","abdominals","arms","misc"))
+    print(db1_exercise_list)
+    add_to_db2(db1_exercise_list[0], db1_exercise_list[1], db1_exercise_list[2], db1_exercise_list[3], db1_exercise_list[4], db1_exercise_list[5]) #Don't delete anything above this.
+   
 
 if __name__ == '__main__':
      main()
-
-
-
-"""I have list of unique exercises from first database.  Now I want to pull each column from second database to make sure they weren't used recently.  I may have exercises rerun that match other ones in first database list.  So now I need to run through both lists, making a third that is not in either list.  Using a while statement(that i will later change to a for loop of 100 iterations), run through both list like the first unique function, adding to a list as long as it isnt already in either of the other two lists."""
